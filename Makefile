@@ -101,7 +101,7 @@ make-migrat: c=make:migration --no-interaction ## 🎫 make migration
 make-migrat: sf
 
 remove-migration-files: ## 🗑️ remove migration
-	@find $(PROJECT)/migrations -name 'Version*.php' -type f -delete
+	@find migrations -name 'Version*.php' -type f -delete
 
 migrate: ## 🛫 Run database migrations
 	$(SYMFONY) doctrine:migrations:migrate --no-interaction
