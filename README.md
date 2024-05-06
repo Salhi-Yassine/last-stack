@@ -1,85 +1,51 @@
-# 30 Days with LAST Stack
+# Symfony Docker
 
-Well hi there! This repository holds the code and script for the
-[30 Days with LAST Stack](https://symfonycasts.com/screencast/30-days-last)
-course on SymfonyCasts.
+A [Docker](https://www.docker.com/)-based installer and runtime for the [Symfony](https://symfony.com) web framework,
+with [FrankenPHP](https://frankenphp.dev) and [Caddy](https://caddyserver.com/) inside!
 
-## Setup
+![CI](https://github.com/dunglas/symfony-docker/workflows/CI/badge.svg)
 
-If you've just downloaded the code, congratulations!!
+## Getting Started
 
-To get it working, follow these steps:
+1. If not already done, [install Docker Compose](https://docs.docker.com/compose/install/) (v2.10+)
+2. Run `docker compose build --no-cache` to build fresh images
+3. Run `docker compose up --pull always -d --wait` to set up and start a fresh Symfony project
+4. Open `https://localhost` in your favorite web browser and [accept the auto-generated TLS certificate](https://stackoverflow.com/a/15076602/1352334)
+5. Run `docker compose down --remove-orphans` to stop the Docker containers.
 
-### Download Composer dependencies
+## Features
 
-Make sure you have [Composer installed](https://getcomposer.org/download/)
-and then run:
+* Production, development and CI ready
+* Just 1 service by default
+* Blazing-fast performance thanks to [the worker mode of FrankenPHP](https://github.com/dunglas/frankenphp/blob/main/docs/worker.md) (automatically enabled in prod mode)
+* [Installation of extra Docker Compose services](docs/extra-services.md) with Symfony Flex
+* Automatic HTTPS (in dev and prod)
+* HTTP/3 and [Early Hints](https://symfony.com/blog/new-in-symfony-6-3-early-hints) support
+* Real-time messaging thanks to a built-in [Mercure hub](https://symfony.com/doc/current/mercure.html)
+* [Vulcain](https://vulcain.rocks) support
+* Native [XDebug](docs/xdebug.md) integration
+* Super-readable configuration
 
-```
-composer install
-```
+**Enjoy!**
 
-### Database Setup
+## Docs
 
-The code comes with a `compose.yaml` file (for Docker) and we recommend using
-Docker to boot a database container. You will still have PHP installed
-locally, but you'll connect to a database inside Docker. This is optional,
-but I think you'll love it!
+1. [Options available](docs/options.md)
+2. [Using Symfony Docker with an existing project](docs/existing-project.md)
+3. [Support for extra services](docs/extra-services.md)
+4. [Deploying in production](docs/production.md)
+5. [Debugging with Xdebug](docs/xdebug.md)
+6. [TLS Certificates](docs/tls.md)
+7. [Using MySQL instead of PostgreSQL](docs/mysql.md)
+8. [Using Alpine Linux instead of Debian](docs/alpine.md)
+9. [Using a Makefile](docs/makefile.md)
+10. [Updating the template](docs/updating.md)
+11. [Troubleshooting](docs/troubleshooting.md)
 
-First, make sure you have [Docker installed](https://docs.docker.com/get-docker/)
-and running. To start the container, run:
+## License
 
-```
-docker compose up -d
-```
+Symfony Docker is available under the MIT License.
 
-Next, build the database and the schema with:
+## Credits
 
-```
-# "symfony console" is equivalent to "bin/console"
-# but its aware of your database container
-symfony console doctrine:database:create --if-not-exists
-symfony console doctrine:schema:create
-symfony console doctrine:fixtures:load
-```
-
-If you do *not* want to use Docker, just make sure to start your own
-database server and update the `DATABASE_URL` environment variable in
-`.env` or `.env.local` before running the commands above. A simple way
-to get the code running is to uncomment the `DATABASE_URL="sqlite...`
-line in `.env` to use SQLite.
-
-### Start the Symfony web server
-
-You can use Nginx or Apache, but Symfony's local web server
-works even better.
-
-To install the Symfony local web server, follow
-"Downloading the Symfony client" instructions found
-here: https://symfony.com/download - you only need to do this
-once on your system.
-
-Then, to start the web server, open a terminal, move into the
-project, and run:
-
-```
-symfony serve
-```
-
-(If this is your first time using this command, you may see an
-error that you need to run `symfony server:ca:install` first).
-
-Now check out the site at `https://localhost:8000`
-
-Have fun!
-
-## Have Ideas, Feedback or an Issue?
-
-If you have suggestions or questions, please feel free to open an issue
-on this repository or comment on the course itself. We're watching both :).
-
-## Thanks!
-
-And as always, thanks so much for your support and letting us do what we love!
-
-<3 Your friends at SymfonyCasts
+Created by [Kévin Dunglas](https://dunglas.dev), co-maintained by [Maxime Helias](https://twitter.com/maxhelias) and sponsored by [Les-Tilleuls.coop](https://les-tilleuls.coop).
