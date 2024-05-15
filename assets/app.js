@@ -5,5 +5,7 @@
  * which should already be in your base.html.twig.
  */
 import './styles/app.css';
-
+import alienGreeting from './lib/alien-greeting.js';
+                
+alienGreeting('Give us all your canddy! ', false);
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
