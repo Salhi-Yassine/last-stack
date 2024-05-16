@@ -6,6 +6,10 @@
  */
 import './styles/app.css';
 import alienGreeting from './lib/alien-greeting.js';
-                
+import JSConfetti from 'js-confetti';
+
+const jsconfetti = new JSConfetti();
+jsconfetti.addConfetti();
+
 alienGreeting('Give us all your canddy! ', false);
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
