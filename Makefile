@@ -109,6 +109,9 @@ migrate: ## 🛫 Run database migrations
 # Generate and view a Doctrine migration diff
 migrate-diff: ## 🟰 Generate and view a Doctrine migration diff
 	$(SYMFONY) doctrine:migrations:diff
+
+fixtures: ## ✈️ Load data fixtures to your database
+	$(SYMFONY) doctrine:fixtures:load --no-interaction
 ## —————— ✅ Tests —————————————————————————————————————————————————————————————————————
 .PHONY: test
 
