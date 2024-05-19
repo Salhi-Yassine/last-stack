@@ -35,4 +35,7 @@ return [
     '@hotwired/turbo' => [
         'version' => '7.3.0',
     ],
+    'stimulus-popover' => [
+        'version' => '6.2.0',
+    ],
 ];
