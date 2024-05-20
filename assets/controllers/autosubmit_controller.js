@@ -8,7 +8,6 @@ export default class extends Controller {
 
     submit(e) {
         this.element.requestSubmit();
-        // this.element.focus();
     }
 
     debouncedSubmit() {
