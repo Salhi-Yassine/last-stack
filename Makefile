@@ -53,6 +53,8 @@ logs: ## 📜 Show live logs
 chown: ## ©️ set yourself as owner of the project files that were created by the docker container
 	@$(DOCKER_COMP) run --rm php chown -R $(shell id -u)\:$(shell id -g) .
 
+tls-sertif: ## 🔐 add the authority to the trust store of the host
+	@sudo docker cp $(docker compose ps -q php):/data/caddy/pki/authorities/local/root.crt /usr/local/share/ca-certificates/root.crt && sudo update-ca-certificates
 ## —————— 🧙‍♀️Composer —————————————————————————————————————————————————————————————————————
 .PHONY: cmp cmp-req cmp-up cmp-ins
 
@@ -79,7 +81,7 @@ vendor: composer.lock
 ## —————— 🎵 Symfony —————————————————————————————————————————————————————————————————————
 .PHONY: sf cc ccf rm-log
 
-sf: ## List all Symfony commands, example: make sf c=about
+sf: ## 🎶 List all Symfony commands, example: make sf c=about
 	@$(eval c ?=)
 	@$(SYMFONY) $(c)
 
