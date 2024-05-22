@@ -46,7 +46,7 @@
         autofocus>
             <div class="whitespace-nowrap m-2 mr-4">{{ voyages|length }} results</div>
         </form>
-        <turbo-frame id="voyage-list" data-turbo-action="advance" class="aria-busy:delay-700 aria-busy:opacity-50 aria-busy:blur-sm transition-all">
+        <turbo-frame id="voyage-list" data-turbo-action="advance">
             <div class="bg-gray-800 p-4 rounded">
                 <table class="w-full text-white">
                     <thead>
@@ -86,7 +86,7 @@
                                     <template data-popover-target="content">
                                         <div data-popover-target="card"
                                             class="max-w-sm rounded shadow-lg bg-gray-900 absolute left-0 bottom-10">
-                                            <turbo-frame loading="lazy" id="planet-card-{{ voyage.planet.id }}"
+                                            <turbo-frame data-skip-transition loading="lazy" id="planet-card-{{ voyage.planet.id }}"
                                                 src="{{ path('app_planet_show_card', { id: voyage.planet.id })}}">
                                                 <div class="p-10">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
