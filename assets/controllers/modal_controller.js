@@ -50,12 +50,11 @@ export default class extends Controller {
     }
 
     showLoading() {
-        console.log('inner', this.loadingTemplateTarget);
 
         if (this.dialogTarget.open) {
             return;
         }
 
-        this.dynamicContentTarget.innerHTML = this.loadingTemplateTarget.html;
+        this.dynamicContentTarget.innerHTML = this.loadingTemplateTarget.innerHTML;
     }
 }
